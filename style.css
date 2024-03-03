@@ -1,6 +1,6 @@
 #banner_section{
-    background-color: #12132D;
-    background-image: url('./images/bgbanner.png');
+    /* background-color: #12132D; */
+background-image: url('./images/bgbanner.png');
     background-repeat: no-repeat;
     background-size: cover;
 display: flex;
