@@ -1,22 +1,19 @@
-
-
-
-
 /* async */
-const discussData=async function(){
-
-const res=await fetch("https://openapi.programming-hero.com/api/retro-forum/posts")
-const data=await res.json()
-const discuss_left=document.getElementById('discuss_left')
-const message_box=document.getElementById('message_box')
-
-data.posts.forEach((item)=>
-
-{mess(item)
+const discussData = async function () {
+  const res = await fetch(
+    "https://openapi.programming-hero.com/api/retro-forum/posts"
+  );
+  const data = await res.json();
+  const discuss_left = document.getElementById("discuss_left");
+  const message_box = document.getElementById("message_box");
+  //mess(data)
+  data.posts.forEach((item) => {
+    //mess(item.title);
+    // mess(item.title,item.view_count)
     //console.log(item)
-    const div=document.createElement('div')
-   
-div.innerHTML=`
+    const div = document.createElement("div");
+
+    div.innerHTML = `
 
 
 <div class="discuss-left-container flex justify-between gap-8 bg-[#797DFC1A] mb-6 p-6 rounded-lg">
@@ -54,7 +51,7 @@ div.innerHTML=`
     </div>
 </div>
 <div class="bottom-icon-right ">
-    <i class="fa-solid fa-envelope bg-[#10B981] flex justify-center items-center lg:w-[40px]  lg:h-[40px] rounded-full text-white" id="message_box" onclick="mess()"></i>
+  <button id="messageBox" onclick="mess('${item.view_count}','${item.title}')">  <i class="fa-solid fa-envelope bg-[#10B981] flex justify-center items-center lg:w-[40px]  lg:h-[40px] rounded-full text-white" id="message_box" ></i></button>
 </div>
 </div>
 
@@ -66,34 +63,116 @@ div.innerHTML=`
 
 
 
-`
-discuss_left.appendChild(div)
-}
+`;
+    discuss_left.appendChild(div);
+  });
+};
 
-)
-
-
-}
-discussData()
 /* mesage-bo-click */
-let discuss_count=document.getElementById('discuss_count')
-let inte=parseInt(discuss_count.innerText)
+let discuss_count = document.getElementById("discuss_count");
+let inte = parseInt(discuss_count.innerText);
 /* ruggt */
-const discuss_right=document.getElementById('discuss_right')
 
-const mess=(item)=>{
+/* baki ace------------------------------------------------------------------------------- */
+const discuss_right = document.getElementById("discuss_right");
+
+const right_card_container=document.getElementById('right_card_container')
+const mess = (d1,d2) => {
+
+
+/* baki ace------------------------------------------------------------------------------- */
+const div=document.createElement('div')
+div.innerHTML=`
+
+
+
+<h3 id="discuss_title">${d2}</h3>
+
+
+<p>
+    <i class="fa-regular fa-eye"></i> <span id="discuss_demo">${d1}</span>
+</p>
+
+
+
+`;
+right_card_container.appendChild('div')
+
+// const discuss_title=document.getElementById('discuss_title').innerText=d2;
+
+// const discuss_demo=document.getElementById('discuss_demo').innerText=d1;
+  /* counting */
+  const rightCount = (inte = inte + 1);
+  document.getElementById("discuss_count").innerText = rightCount;
+  /* discuss-right-display-item */
+
+
+
+};
+
+/* baki ace------------------------------------------------------------------------------- */
+
+
+/* ================================
+       LATESST POST
+======================*/
+const cardContainer=document.getElementById('post-card')
+const latestPost=async ()=>{
+
+const response=await fetch('https://openapi.programming-hero.com/api/retro-forum/latest-posts')
+const data = await response.json()
+data.forEach((item)=>{
     console.log(item)
+const div=document.createElement('div')
+div.innerHTML=`
 
-/* counting */
-const rightCount=inte= inte + 1;
-document.getElementById('discuss_count').innerText=rightCount;
-/* discuss-right-display-item */
-//const discuss_title=document.getElementById('discuss_title').innerText=item.title
-// const demo=document.getElementById('demo').innerHTML= `<p>${item.title}</p>`
+<div class="card w-96 bg-white shadow-xl p-4">
+<figure><img src="${item.cover_image}" alt="Shoes" /></figure>
+<div class="card-body ">
+    <div class="card-date font-semibold text-[#12132D99]">
+        <i class="fa-solid fa-calendar-days"></i> <span>${item.author.posted_date=== undefined? "No Published Date":item.author.posted_date}</span>
+    </div>
+  <h2 class="card-title">${item.title}</h2>
+  <p>If a dog chews shoes whose shoes does he choose?</p>
+  <p class="text-[#12132D99]">
+    ${item.description}
+  </p>
+  <div class="card-actions flex justify-between mt-4 ">
+    <div class="avatar">
+        <div class="w-[60px] rounded-full">
+          <img src="${item.profile_image}" />
+        </div>
+
+  </div>
+<div class="card-action-title">
+<p>${item.author.name}</p>
+<p>${item.author.designation ===undefined?"Unknown" : item.author.designation }</p>
+</div>
+
+</div>
+</div>
+
+
+</div>
 
 
 
+
+`;
+
+
+
+
+
+
+
+cardContainer.appendChild(div)
+
+
+})
 
 
 
 }
+discussData();
+latestPost()
