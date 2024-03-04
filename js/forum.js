@@ -16,7 +16,7 @@ const loadData = async (id,item="") => {
   discussDisplayData(forumData);
 };
 
-loadData();
+// loadData();
 
 const discussDisplayData = (forumData) => {
   //console.log(item)
