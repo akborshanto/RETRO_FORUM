@@ -37,14 +37,14 @@ setTimeout(()=>{
     <div class="discuss-left-container mx-auto flex flex-col lg:flex-row  lg:justify-between lg:items-center gap-8 mb-6 p-6 rounded-lg">
     <div class="discuss-left-img ">
     
+    <div class="indicator">
+  <span class="indicator-item badge  ${item.isActive? "bg-[green]": "bg-[red]"}"></span>
+  <div class="grid  h-32  place-items-center w-24 rounded-full">
+  
+  <img src="${item.image}" class="rounded-full" />
+  </div>
+</div>
     
-        <div class='avatar online'  id="ava">
-
-            <div class="w-24 rounded-full">
-              <img src="${item.image}" />
-            </div>
-    </div>
-
     
     </div>
     <div class="discuss-left-title">
