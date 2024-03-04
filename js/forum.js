@@ -4,7 +4,7 @@ const discussData = async function (params) {
  
 
 
-    document.getElementById('loading').classList.remove('hidden')
+   // document.getElementById('loading').classList.remove('hidden')
   const res = await fetch(
  
    // "https://openapi.programming-hero.com/api/retro-forum/posts"
@@ -19,29 +19,32 @@ const discussData = async function (params) {
 discuss_left.textContent= ""
 setTimeout(()=>{
     data.posts.forEach((item) => {
-        document.getElementById('loading').classList.add('hidden')
+      //  document.getElementById('loading').classList.add('hidden')
     
     
         const div = document.createElement("div");
         showCategory=div;
+        div.classList.add('mb-4')
+        div.classList.add('bg-white')
     // div.innerHTML=""
+    // //  // //    ${
+    //   item.isActive ?  document.getElementById('ava').classList.add("online") :remove("offline")
+    // }
+    //     // item.isActive === true ? "online" : "offline"
         div.innerHTML = `
     
      
-    <div class="discuss-left-container flex justify-between gap-8 bg-[#797DFC1A] mb-6 p-6 rounded-lg">
+    <div class="discuss-left-container mx-auto flex flex-col lg:flex-row  lg:justify-between lg:items-center gap-8 mb-6 p-6 rounded-lg">
     <div class="discuss-left-img ">
     
     
-        <div class="avatar online " id="ava">
-    ${
-      //item.isActive === true ?  document.getElementById('ava').classList.add(online) :document.getElementById('ava').classList.add(offline)
-      item.isActive === true ? "online" : "offline"
-    }
+        <div class='avatar online'  id="ava">
+
             <div class="w-24 rounded-full">
               <img src="${item.image}" />
             </div>
     </div>
-    
+
     
     </div>
     <div class="discuss-left-title">
@@ -115,10 +118,10 @@ const mess = (d2, d1) => {
 
 <div class="right-title-card flex justify-between gap-8 bg-white p-4 rounded-md mt-6 items-center">
 
-<h3 id="discuss_title">${d1}</h3>
+<h3 id="discuss_title" class=" text-[17px] lg:text-2xl font-semibold p-4 lg:p6">${d1}</h3>
 
 
-<p>
+<p class="text-[17px] lg:text-2xl font-semibold p-4 lg:p6">
     <i class="fa-regular fa-eye"></i> <span id="discuss_demo">${d2}</span>
 </p>
 
@@ -149,8 +152,8 @@ const latestPost = async () => {
     const div = document.createElement("div");
     div.innerHTML = `
 
-<div class="card w-96 bg-white shadow-xl p-4">
-<figure><img src="${item.cover_image}" alt="Shoes" /></figure>
+<div class="card w-96 bg-white shadow-xl p-4  mx-auto mb-6 lg:mb-0 lg:mx-0 lg:h-[565px]">
+<figure class="rounded-lg"><img src="${item.cover_image}" alt="Shoes" /></figure>
 <div class="card-body ">
     <div class="card-date font-semibold text-[#12132D99]">
         <i class="fa-solid fa-calendar-days"></i> <span>${
@@ -160,8 +163,7 @@ const latestPost = async () => {
         }</span>
     </div>
   <h2 class="card-title">${item.title}</h2>
-  <p>If a dog chews shoes whose shoes does he choose?</p>
-  <p class="text-[#12132D99]">
+  <p class="text-[#12132D99] font-semibold text-[17px] ">
     ${item.description}
   </p>
   <div class="card-actions flex justify-between mt-4 ">
