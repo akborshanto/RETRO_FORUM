@@ -1,10 +1,10 @@
 /* async */
-let showCategory=1000;
+
 const discussData = async function (params) {
  
 
 
-   // document.getElementById('loading').classList.remove('hidden')
+    document.getElementById('loading').classList.remove('hidden')
   const res = await fetch(
  
    // "https://openapi.programming-hero.com/api/retro-forum/posts"
@@ -19,18 +19,15 @@ const discussData = async function (params) {
 discuss_left.textContent= ""
 setTimeout(()=>{
     data.posts.forEach((item) => {
-      //  document.getElementById('loading').classList.add('hidden')
+        document.getElementById('loading').classList.add('hidden')
     
     
         const div = document.createElement("div");
-        showCategory=div;
+  
         div.classList.add('mb-4')
         div.classList.add('bg-white')
-    // div.innerHTML=""
-    // //  // //    ${
-    //   item.isActive ?  document.getElementById('ava').classList.add("online") :remove("offline")
-    // }
-    //     // item.isActive === true ? "online" : "offline"
+    div.innerHTML=""
+
         div.innerHTML = `
     
      
@@ -38,7 +35,7 @@ setTimeout(()=>{
     <div class="discuss-left-img ">
     
     <div class="indicator">
-  <span class="indicator-item badge  ${item.isActive? "bg-[green]": "bg-[red]"}"></span>
+  <span class="indicator-item badge border-none rounded-full  ${item.isActive? "bg-[green]": "bg-[red]"}"></span>
   <div class="grid  h-32  place-items-center w-24 rounded-full">
   
   <img src="${item.image}" class="rounded-full" />
@@ -95,23 +92,21 @@ setTimeout(()=>{
 };
 
 /* ruggt */
-/* baki ace------------------------------------------------------------------------------- */
 const discuss_right = document.getElementById("right_card_container");
 
 const right_card_container = document.getElementById("right_card_container");
 let discuss_count = document.getElementById("discuss_count");
 let inte = parseInt(discuss_count.innerText);
-//const discuss_right=document.getElementById('discuss_right')
+
 
 const mess = (d2, d1) => {
-  /* mesage-bo-click */
-  // const discuss_title=document.getElementById('discuss_title').innerText=d2;
-  // const discuss_demo=document.getElementById('discuss_demo').innerText=d1;
+  /* mesage-bo-click *
+  /
   /* counting */
   const rightCount = (inte = inte + 1);
   document.getElementById("discuss_count").innerText = rightCount;
   /* discuss-right-display-item */
-  /* baki ace------------------------------------------------------------------------------- */
+
   const div = document.createElement("h1");
   div.innerHTML = `
 
@@ -136,7 +131,6 @@ const mess = (d2, d1) => {
   discuss_right.appendChild(div);
 };
 // discussData();
-/* baki ace------------------------------------------------------------------------------- */
 
 /* ================================
        LATESST POST
@@ -148,7 +142,6 @@ const latestPost = async () => {
   );
   const data = await response.json();
   data.forEach((item) => {
-    //  console.log(item)
     const div = document.createElement("div");
     div.innerHTML = `
 
@@ -188,9 +181,6 @@ const latestPost = async () => {
 
 </div>
 
-
-
-
 `;
 
     cardContainer.appendChild(div);
@@ -204,11 +194,13 @@ const handleSearch = (e) => {
 //   console.log(e);
   const handle_input = document.getElementById("handle_input");
 const searchValue=handle_input.value;
-console.log(searchValue)
-// discussData(searchValue);
+
 discussData(searchValue);
 };
 
 latestPost();
 // discussData();
-discussData(showCategory);
+discussData('100')
+
+/* utilities */
+
