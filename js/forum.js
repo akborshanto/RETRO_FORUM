@@ -1,15 +1,14 @@
-
-
 /* ============================================================
                        DISCUSS_DATA
 ==========================================================*/
 const discuss_left = document.getElementById("discuss_left");
 const message_box = document.getElementById("message_box");
 
-const loadData = async (params) => {
+const loadData = async (id,item="") => {
+  discuss_left.innerHTML=""
   document.getElementById("loading").classList.remove("hidden");
   const responsive = await fetch(
-    "https://openapi.programming-hero.com/api/retro-forum/posts"
+    `  https://openapi.programming-hero.com/api/retro-forum/posts?category=${id}`
   );
   const data = await responsive.json();
   const forumData = data.posts;
@@ -127,9 +126,9 @@ const mess = (d2, d1) => {
 const handleSearch = (e) => {
   const handle_input = document.getElementById("handle_input");
   const searcText = handle_input.value;
-  discussData(searcText);
+loadData(searcText)
 };
-
+//loadData("100")
 // handleSearch()
 
 /* ============================================================
