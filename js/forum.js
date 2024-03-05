@@ -16,7 +16,7 @@ const loadData = async (id,item="") => {
   discussDisplayData(forumData);
 };
 
-// loadData();
+ loadData("");
 
 const discussDisplayData = (forumData) => {
   //console.log(item)
@@ -79,7 +79,7 @@ const discussDisplayData = (forumData) => {
         /'/g,
         ""
       )}',)">  <i class="fa-solid fa-envelope bg-[#10B981] flex justify-center items-center w-[40px] h-[40px] lg:w-[40px] 
-   lg:h-[40px] rounded-full text-white" id="message_box" ></i></button>
+   lg:h-[40px] rounded-full text-white hover:animate-ping hover:bg-[#797DFC]" id="message_box" ></i></button>
 </div>
 </div>
 
@@ -108,10 +108,10 @@ const mess = (d2, d1) => {
   div.innerHTML = `
 <div class="right-title-card flex justify-between gap-8 bg-white p-4 rounded-md mt-6 items-center">
 
-<h3 id="discuss_title" class=" text-[17px] lg:text-[20px] font-semibold p-4 lg:p6">${d1}</h3>
+<h3 id="discuss_title" class=" text-[17px] lg:text-[18px] font-semibold p-4 lg:p6">${d1}</h3>
 
 
-<p class="text-[16px] lg:text-[16px] text-[#12132D99] font-semibold p-4 lg:p6">
+<p class="text-[16px] lg:text-[14px] text-[#12132D99] font-semibold p-4 lg:p5">
     <i class="fa-regular fa-eye text-[#12132D99] "></i> <span id="discuss_demo">${d2}</span>
 </p>
 
@@ -119,11 +119,10 @@ const mess = (d2, d1) => {
 `;
   discuss_right.appendChild(div);
 };
-
 /* ==========================================
               HANDLE_SEARCH
 ============================================= */
-const handleSearch = (e) => {
+const handleSearch = (item="") => {
   const handle_input = document.getElementById("handle_input");
   const searcText = handle_input.value;
 loadData(searcText)
@@ -173,8 +172,8 @@ const latestDisplayData = (data) => {
       </div>
 </div>
 <div class="card-action-title">
-<p>${item.author.name}</p>
-<p>${
+<p class="text-semibold">${item.author.name}</p>
+<p class="text-semibold">${
       item.author.designation === undefined
         ? "Unknown"
         : item.author.designation
